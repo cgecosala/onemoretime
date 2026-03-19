@@ -44,12 +44,12 @@
       background: #01eeff;
       transform: scale(0.95);
     }
-    /* Background text */
+
 .bg-text {
   position: fixed;
-  top: 200px;              /* move to top */
+  top: 200px;           
   left: 50%;
-  transform: translateX(-50%); /* only center horizontally */
+  transform: translateX(-50%);
   
   font-size: 100px;
   font-weight: 900;
@@ -80,8 +80,7 @@
   animation: liquidMove 6s ease-in-out infinite;
 }
 
-  /* Glass + metal base */
-  background: linear-gradient(
+    background: linear-gradient(
     120deg,
     #ffffff,
     #cfcfcf,
@@ -90,33 +89,47 @@
     #ffffff
   );
 
-  /* Rainbow reflective edge */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* Glow / reflection */
-  text-shadow:
+    text-shadow:
     0 0 10px rgba(255,255,255,0.3),
     0 0 20px rgba(0,255,255,0.2),
     0 0 30px rgba(255,0,255,0.2),
     0 0 40px rgba(255,255,0,0.2);
 
-  /* Liquid shimmer animation */
   background-size: 300% 300%;
   animation: liquidMove 6s ease-in-out infinite;
 }
 
-/* Animation */
 @keyframes liquidMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Make sure pads sit above */
 .container {
   position: relative;
   z-index: 1;
+}
+
+footer {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: white;
+  z-index: 1;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+footer a:visited {
+  color: white;
 }
   </style>
 </head>
@@ -174,6 +187,6 @@
   });
 
 </script>
-
+<footer>inspired by <a href="https://www.youtube.com/watch?v=5QwOpRh-IfI" target="_blank">this video</a> from Tracklib</footer>
 </body>
 </html>
