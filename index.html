@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>One More Time</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      color: white;
+      font-family: Arial;
+    }
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+    .pad-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .key-label {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .pad {
+      width: 120px;
+      height: 120px;
+      background: #333;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: 0.1s;
+    }
+    .pad:active,
+    .pad.active {
+      background: #00c3ff;
+      transform: scale(0.95);
+    }
+    /* Background text */
+.bg-text {
+  position: fixed;
+  top: 200px;              /* move to top */
+  left: 50%;
+  transform: translateX(-50%); /* only center horizontally */
+  
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+
+  background: linear-gradient(
+    120deg,
+    #ffffff,
+    #cfcfcf,
+    #ffffff,
+    #888,
+    #ffffff
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.3),
+    0 0 20px rgba(0,255,255,0.2),
+    0 0 30px rgba(255,0,255,0.2),
+    0 0 40px rgba(255,255,0,0.2);
+
+  background-size: 300% 300%;
+  animation: liquidMove 6s ease-in-out infinite;
+}
+
+  /* Glass + metal base */
+  background: linear-gradient(
+    120deg,
+    #ffffff,
+    #cfcfcf,
+    #ffffff,
+    #888,
+    #ffffff
+  );
+
+  /* Rainbow reflective edge */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Glow / reflection */
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.3),
+    0 0 20px rgba(0,255,255,0.2),
+    0 0 30px rgba(255,0,255,0.2),
+    0 0 40px rgba(255,255,0,0.2);
+
+  /* Liquid shimmer animation */
+  background-size: 300% 300%;
+  animation: liquidMove 6s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes liquidMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Make sure pads sit above */
+.container {
+  position: relative;
+  z-index: 1;
+}
+  </style>
+</head>
+<body>
+<div class="bg-text">ONE MORE TIME</div>
+<div class="container">
+  <div class="pad-wrapper">
+    <div class="key-label">Press [J]</div>
+    <div class="pad" id="pad01" onclick="playSound('01')">BAaaa</div>
+  </div>
+
+  <div class="pad-wrapper">
+    <div class="key-label">Press [K]</div>
+    <div class="pad" id="pad02" onclick="playSound('02')">BUH Baaa</div>
+  </div>
+
+  <div class="pad-wrapper">
+    <div class="key-label">Press [L]</div>
+    <div class="pad" id="pad03" onclick="playSound('03')">Bam</div>
+  </div>
+</div>
+
+<audio id="01" src="samples/Sample_01.wav"></audio>
+<audio id="02" src="samples/Sample_02.wav"></audio>
+<audio id="03" src="samples/Sample_03.wav"></audio>
+
+<script>
+    function playSound(id) {
+    const audio = document.getElementById(id);
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  function activatePad(padId) {
+    const pad = document.getElementById(padId);
+    pad.classList.add('active');
+    setTimeout(() => pad.classList.remove('active'), 100);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+
+    if (key === 'j') {
+      playSound('01');
+      activatePad('pad01');
+    }
+    if (key === 'k') {
+      playSound('02');
+      activatePad('pad02');
+    }
+    if (key === 'l') {
+      playSound('03');
+      activatePad('pad03');
+    }
+  });
+
+</script>
+
+</body>
+</html>
